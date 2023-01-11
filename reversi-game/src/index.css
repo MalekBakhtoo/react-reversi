@@ -34,3 +34,10 @@ h1{
 .sugust{
   background-color: rgb(62, 255, 56);
 }
+.block {
+  width: 2.5rem;
+  height: 2.5rem;
+  
+  display: block;
+
+}
