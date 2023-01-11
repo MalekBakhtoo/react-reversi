@@ -64,11 +64,11 @@ function App() {
 
   let balckTurn = false;
 
-  function findValidMove(i, j, turn , search) {
+  function findValidMove(i, j, turn, search) {
     let blockValidMoves = [];
     let validRow = i, validColumn = j;
 
-    
+
 
     // check right 
     for (c = j + 1; c < 7; c++) {
@@ -97,7 +97,7 @@ function App() {
         if (accCells[c - 1][j] == 3) {
           validColumn--;
           blockValidMoves.push([validRow, validColumn]);
-        } else if (accCells[c - 1][j] == search) { validColumn--; }
+        } else if (accCells[c - 1][j] == search) { validRow--; }
       }
     }
     // check down 
@@ -107,7 +107,7 @@ function App() {
         if (accCells[c + 1][j] == 3) {
           validColumn++;
           blockValidMoves.push([validRow, validColumn]);
-        } else if (accCells[c + 1][j] == search) { validColumn++; }
+        } else if (accCells[c + 1][j] == search) { validRow++; }
       }
     }
 
@@ -155,38 +155,77 @@ function App() {
         } else if (accCells[r + 1][c + 1] == search) { r++; c++; }
       }
     }
-    return {block : [i, j] , valid : blockValidMoves};
+    return { block: [i, j], valid: blockValidMoves };
 
   }
 
-  
-  
+
+
   function validPlaces(bturn) {
     let allValidMoves = [];
     let turn = 2;
     let search = 1;
     if (bturn) { search = 1; turn = 2; }
     else { search = 2; turn = 1; }
-    
-    for (i = 0; i < 8; i++) {
-      for (let j = 0; j < 8; j++) { 
 
-        if (accCells[i][j] ==turn ){
-          valid = findValidMove(i , j , turn ,search);
+    for (i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+
+        if (accCells[i][j] == turn) {
+          valid = findValidMove(i, j, turn, search);
           allValidMoves.push(valid);
         }
       }
     }
     return allValidMoves;
   }
-  function setSugustions (bturn){
+  function setSugustions(bturn) {
 
     let valPlaces = validPlaces(bturn);
-    for(i=0 ; i < valPlaces.length ; i++ ){
-      
+    for (i = 0; i < valPlaces.length; i++) {
+      for (let j = 0; j < valPlaces[i][valid].length; j++) {
+        row = valPlaces[i][valid][j][0];
+        col = valPlaces[i][valid][j][1];
+        let segPlace = allBlock[row][col];
+        segPlace.classList.add("sugust");
+      }
     }
+  }
+
+
+
+  function setBlock() {
+    for (i = 0; i < 8; i++) {
+      for (j = 0; j < 8; j++) {
+
+        if (accCells[i][j] == 1) {
+          wblock = document.createElement("div");
+          wblock.classList.add("wblock");
+          allBlock[j][i].children[0] = wblock;
+        }
+        if (accCells[i][j] == 2) {
+          bblock = document.createElement("div");
+          bblock.classList.add("bblock");
+          allBlock[j][i].children[0] = bblock;
+        }
+        if (accCells[i][j] == 3 && allBlock[j][i].children[0].length >= 1) {
+          allBlock[j][i].removeChild(allBlock[j][i].children[0]);
+        }
+      }
+    }
+  }
+  function choose(){
 
   }
+  function isFinished(accplaces){
+
+  }
+  function turnHandler(){
+    
+  }
+
+
+
 
   return (
     <section id='board'>
