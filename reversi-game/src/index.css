@@ -1,11 +1,13 @@
-*{
+* {
   margin: 0;
-  padding:0;
+  padding: 0;
   box-sizing: border-box;
 }
-body{
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+body {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
 /* header{
   display: flex;
   justify-content: center;
@@ -13,31 +15,38 @@ body{
 h1{
   padding: 1rem;
 } */
-.cell{
+.cell {
   width: 3rem;
   height: 3rem;
   margin: 0.05rem;
   /* border-radius: 5rem; */
-  background:rgb(47, 118, 20);
+  background: rgb(12, 12, 192);
 }
-#cells{
+
+#cells {
   margin-top: 0.3rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  
+
 }
-.col{
-  display:flex;
+
+.col {
+  display: flex;
   flex-direction: column;
 }
-.sugust{
-  background-color: rgb(62, 255, 56);
+
+.sugust {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border: 0.3rem solid rgb(45, 255, 3);
 }
+
 .block {
   width: 2.5rem;
   height: 2.5rem;
-  
+
   display: block;
 
 }
