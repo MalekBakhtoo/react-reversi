@@ -1,11 +1,18 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import reactLogo from './assets/react.svg'
-import './App.css'
-import './logic.js'
+import './App.css';
+import './logic.js';
 import { useEffect } from 'react';
+import React from 'react';
 
 
 function App() {
+
+  
+
+  const [balckTurn, setTurn] = React.useState(false);
+
+  
 
   // board making 
   const allBlock = [];
@@ -13,7 +20,7 @@ function App() {
     const colBlock = [];
     for (let j = 0; j < 8; j++) {
       const newPlace = document.createElement("div");
-      newPlace.setAttribute("id", "C" + i + "" + j)
+      newPlace.setAttribute("id", "C" + j + "" + i)
       newPlace.classList.add("cell");
       colBlock.push(newPlace);
     }
@@ -33,17 +40,6 @@ function App() {
       col[7].appendChild(allBlock[7][i]);
     }
   }, []);
-
-
-
-  // function inpDisk(block) {
-  //   let disk = document.createElement("div");
-  //   disk.classList.add("disk");
-  //   block.appendChild(disk);
-  // }
-
-
-  let balckTurn = false;
 
   // make accupied cell matrix
   // white 1  , black 2 , null 3
@@ -189,7 +185,7 @@ function App() {
       }
     }
   }
-  function removeSugustions(bturn) {
+  function removeSugustions() {
 
     for (let i = 0; i < 8; i++) {
       for (let j = 0; j < 8; j++) {
@@ -228,8 +224,10 @@ function App() {
       }
     }
   }
-  function choose(bturn) {
-    let chossedBlock = this;
+
+  function choose(bturn ,id) {
+
+    let chossedBlock = [parseInt(id[1]), parseInt(id[2])];
     let valPlaces = validPlaces(bturn);
     let turn = 2;
     let noTurn = 1;
@@ -237,14 +235,14 @@ function App() {
     else { noTurn = 2; turn = 1; }
 
 
-    for (let i = 0; i < valPlaces.length; i++) {
-      for (let j = 0; j < valPlaces[i]["valid"].length; j++) {
-        let row = valPlaces[i]["valid"][j][0];
-        let col = valPlaces[i]["valid"][j][1];
-        let segPlace = allBlock[col][row];
-        if (chossedBlock == segPlace) {
-          let originRow = valPlaces[i]["block"][j][0];
-          let originCol = valPlaces[i]["block"][j][1];
+    for (let satr = 0; satr < valPlaces.length; satr++) {
+      for (let sotoon = 0; sotoon < valPlaces[satr]["valid"].length; sotoon++) {
+        let row = valPlaces[satr]["valid"][sotoon][0];
+        let col = valPlaces[satr]["valid"][sotoon][1];
+
+        if (chossedBlock[0] == row && chossedBlock[1] == col) {
+          let originRow = valPlaces[satr]["block"][0];
+          let originCol = valPlaces[satr]["block"][1];
 
           //top set
           if (originRow > row && originCol == col) {
@@ -306,23 +304,37 @@ function App() {
         }
       }
     }
+    setBlock();
+    removeSugustions();
+    setTurn(!balckTurn);
+    setSugustions(balckTurn);
   }
-  function isFinished(accplaces) {
-    for (i = 0; i < 8; i++) {
-      for (j = 0; j < 8; j++) {
-        if (accplaces[i][j] == 3) { return false; }
+  function isFinished() {
+    for (let i = 0; i < 8; i++) {
+      for (let j = 0; j < 8; j++) {
+        if (accCells[i][j] == 3) { return false; }
       }
     }
     return true;
   }
 
-  while (!isFinished()) {
-    setSugustions(balckTurn);
-    choose(balckTurn);
-    removeSugustions(balckTurn);
-    balckTurn = !balckTurn;
+  // bnewgame.addEventListener('click', () => location.reload());
 
-  }
+  //event listener for sugust class 
+  setBlock();
+  setSugustions(balckTurn);
+
+  
+  useEffect(() => {
+    const arrClass = document.getElementsByClassName("sugust");
+    for (let i = 0; i < arrClass.length; i++) {
+      arrClass[i].addEventListener("click", (e) => {
+        choose(balckTurn , e.target.id);
+      });
+    }
+  }, []);
+
+
 
 
 
