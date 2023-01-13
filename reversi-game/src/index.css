@@ -7,28 +7,31 @@
 body {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-
-/* header{
-  display: flex;
-  justify-content: center;
-}
-h1{
-  padding: 1rem;
-} */
 .cell {
-  width: 3rem;
-  height: 3rem;
-  margin: 0.05rem;
-  /* border-radius: 5rem; */
-  background: rgb(12, 12, 192);
+  width: 3.3rem;
+  height: 3.3rem;
+  margin: 0.15rem;
+  background: rgba(86, 146, 62, 0.953);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  border-radius: 10%;
 }
 
 #cells {
-  margin-top: 0.3rem;
+  position: absolute;
+  left: 23.5em;
+  top: 2.2em;
+  width: fit-content;
   display: flex;
-  flex-direction: row;
   justify-content: center;
-
+  margin-top: 0.3rem;
+  flex-direction: row;
+  background-color: black;
+  border: 1.2em solid black;
+  border-radius: 2%;
+  box-shadow: 0.5em 0.5em 0.5em rgb(63, 63, 63),
+    -0.5em -0.3em 0.5em rgb(63, 63, 63)
 }
 
 .col {
@@ -40,13 +43,94 @@ h1{
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  border: 0.3rem solid rgb(45, 255, 3);
+  border: 0.3rem solid rgb(60, 255, 0);
 }
 
 .block {
   width: 2.5rem;
   height: 2.5rem;
-
   display: block;
+  margin-left:0.4rem ;
 
+}
+
+button {
+  position: relative;
+  top: 50em;
+  left: 56em;
+  padding: 1em;
+  border: none;
+  cursor: pointer;
+}
+
+button :hover {
+  box-shadow: 0.2em 0.2em 0.5em rgb(63, 63, 63);
+}
+
+.items{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(52, 103, 31, 0.863);
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem
+}
+.logo img{
+  margin: 0.1em 1.5rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 0.5rem solid rgb(155, 109, 49);
+}
+h1{
+  display: inline;
+  position: relative;
+  bottom: 0.7em;
+  font-size: 1.8em;
+}
+.navbar{
+  display: flex;
+  align-items: center;
+}
+.navbar ul{
+  margin-right: 1rem;
+  display: flex;
+  list-style-type: none;
+  font-size: 1.4rem;
+}
+.navbar li :hover{
+  color: rgb(153, 110, 54);
+}
+.navbar a {
+  margin: 0 1.3em;
+  color: #000;
+  text-decoration: none;
+}
+
+.player-property{
+  position: relative;
+  width: 22em;
+  height: 25em;
+}
+.one{
+  position: absolute;
+  top: 10em;
+  display: inline-flex;
+  justify-content: flex-start;
+}
+.tow{
+  position: absolute;
+  top: 15.2em;
+  left: 73em;
+  display: inline-flex;
+  justify-content: flex-end;
+}
+#p{
+  width: 100%;
+  position: relative;
 }

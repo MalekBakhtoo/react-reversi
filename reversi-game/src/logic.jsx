@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
-
-
+import img from "./assets/react.svg"
 
 export default function Gamereact() {
+
   // board making 
   const allBlock = [];
   for (let i = 0; i < 8; i++) {
@@ -15,8 +15,8 @@ export default function Gamereact() {
     }
     allBlock.push(colBlock);
   }
+
   useEffect(() => {
-    const allPlace = document.getElementById("places");
     const col = document.getElementsByClassName("col");
     for (let i = 0; i < 8; i++) {
       col[0].appendChild(allBlock[0][i]);
@@ -104,7 +104,7 @@ export default function Gamereact() {
         if (accCells[r - 1][c - 1] == 3) {
           r--; c--;
           blockValidMoves.push([r, c]);
-        } else{ r--; c--; }
+        } else { r--; c--; }
       }
     }
     //top right 
@@ -174,7 +174,15 @@ export default function Gamereact() {
       }
     }
   }
+
+
+
+  const [whiteScore , setWhiteScore] = useState(0);
+  const [blackScore , setBlackScore] = useState(0);
+
+
   function setBlock() {
+    
 
     for (let i = 0; i < 8; i++) {
       for (let j = 0; j < 8; j++) {
@@ -185,6 +193,7 @@ export default function Gamereact() {
           let wblock = document.createElement("img");
           wblock.setAttribute("src", "src/assets/img/wb.png");
           wblock.classList.add("block");
+          // setWhiteScore(whiteScore+1);
           if (allBlock[j][i].children.length >= 1) {
             allBlock[j][i].children[0].remove();
           }
@@ -194,6 +203,7 @@ export default function Gamereact() {
           let bblock = document.createElement("img");
           bblock.setAttribute("src", "src/assets/img/bb.png");
           bblock.classList.add("block");
+          // setBlackScore(blackScore+1);
           if (allBlock[j][i].children.length >= 1) {
             allBlock[j][i].children[0].remove();
           }
@@ -274,7 +284,7 @@ export default function Gamereact() {
           }
           //down right
           if (originRow < row && originCol < col) {
-            let r = originRow + 1, c = originCol+1;
+            let r = originRow + 1, c = originCol + 1;
             while (r <= row && c <= col) {
               accCells[r][c] = turn;
               r++; c++;
@@ -285,7 +295,6 @@ export default function Gamereact() {
     }
     setBlock();
   }
-
   function isFinished() {
     for (let i = 0; i < 8; i++) {
       for (let j = 0; j < 8; j++) {
@@ -294,7 +303,6 @@ export default function Gamereact() {
     }
     return true;
   }
-
   for (let i of allBlock) {
     for (let j of i) {
       j.addEventListener("click", (e) => {
@@ -310,26 +318,55 @@ export default function Gamereact() {
   }
 
 
+
   let blackTurn = false;
   let valplace = validPlaces(blackTurn);
   setBlock();
   setSugustions(valplace);
-
+ 
 
 
   return (
-    <section id='board'>
-      <section id="cells">
-        <div className="col" id="row1"></div>
-        <div className="col" id="row2"></div>
-        <div className="col" id="row3"></div>
-        <div className="col" id="row4"></div>
-        <div className="col" id="row5"></div>
-        <div className="col" id="row6"></div>
-        <div className="col" id="row7"></div>
-        <div className="col" id="row8"></div>
-      </section>
-    </section>
+
+    <><nav className="navbar">
+      <div className="items">
+
+        <div href="#" className="logo">
+          <img src={img} alt="website logo"/>
+          <h1>Reversi Game</h1>
+
+        </div>
+        <ul>
+          <li><a href="#">GAMES</a></li>
+          <li><a href="#" target="_blank">SIGN IN</a></li>
+          <li><a href="#">SIGN UP</a></li>
+        </ul>
+
+      </div>
+    </nav><main>
+
+        <article id="p">
+          <section id="cells">
+            <div className="col" id="row1"></div>
+            <div className="col" id="row2"></div>
+            <div className="col" id="row3"></div>
+            <div className="col" id="row4"></div>
+            <div className="col" id="row5"></div>
+            <div className="col" id="row6"></div>
+            <div className="col" id="row7"></div>
+            <div className="col" id="row8"></div>
+          </section>
+          {/* <section id="buttons">
+            <button><i class="fa-solid fa-arrow-rotate-right"></i>  RESTART</button>
+          </section> */}
+
+        </article>
+
+        {/* <aside className="player-property tow">
+          <div id="player2"></div>
+        </aside> */}
+
+      </main></>
 
   )
 }
