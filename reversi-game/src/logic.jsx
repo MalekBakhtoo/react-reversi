@@ -177,12 +177,12 @@ export default function Gamereact() {
 
 
 
-  const [whiteScore , setWhiteScore] = useState(0);
-  const [blackScore , setBlackScore] = useState(0);
+  const [whiteScore, setWhiteScore] = useState(2);
+  const [blackScore, setBlackScore] = useState(2);
 
 
   function setBlock() {
-    
+
 
     for (let i = 0; i < 8; i++) {
       for (let j = 0; j < 8; j++) {
@@ -310,21 +310,40 @@ export default function Gamereact() {
         blackTurn = !blackTurn;
         valplace = validPlaces(blackTurn);
         setSugustions(valplace);
+        let scores = scoreUpdate();
+
+        setBlackScore(scores[1]);
+        setWhiteScore(scores[0]);
+
         if (isFinished()) {
-          window.alert("finish");
+
+          if (scores[0] > scores[1]) {
+            window.alert(" white win  finish");
+          }
+          if ( scores[0] < scores[1]) {
+            window.alert(" black win  finish");
+          }
         }
       });
     }
   }
 
+  function scoreUpdate() {
+    let w = 0, b = 0;
+    for (let i of accCells) {
+      for (let j of i) {
+        if (j == 1) { w++; }
+        else if (j == 2) { b++; }
+      }
+    }
+    return [w, b];
+  }
 
 
   let blackTurn = false;
   let valplace = validPlaces(blackTurn);
   setBlock();
   setSugustions(valplace);
- 
-
 
   return (
 
@@ -332,7 +351,7 @@ export default function Gamereact() {
       <div className="items">
 
         <div href="#" className="logo">
-          <img src={img} alt="website logo"/>
+          <img src={img} alt="website logo" />
           <h1>Reversi Game</h1>
 
         </div>
@@ -344,7 +363,10 @@ export default function Gamereact() {
 
       </div>
     </nav><main>
-
+        <div className='white player-property'>
+          <p>White</p>
+          <p>score : {whiteScore}</p>
+        </div>
         <article id="p">
           <section id="cells">
             <div className="col" id="row1"></div>
@@ -356,15 +378,16 @@ export default function Gamereact() {
             <div className="col" id="row7"></div>
             <div className="col" id="row8"></div>
           </section>
-          {/* <section id="buttons">
-            <button><i class="fa-solid fa-arrow-rotate-right"></i>  RESTART</button>
-          </section> */}
-
+          <section id="buttons">
+            <button><i className="fa-solid fa-arrow-rotate-right"></i>  RESTART</button>
+          </section>
         </article>
+        <div className='black player-property'>
+          <p>black</p>
+          <p>score : {blackScore}</p>
+        </div>
 
-        {/* <aside className="player-property tow">
-          <div id="player2"></div>
-        </aside> */}
+
 
       </main></>
 

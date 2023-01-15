@@ -5,17 +5,22 @@
 }
 
 body {
+
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
 }
+
 .cell {
+
   width: 3.3rem;
   height: 3.3rem;
   margin: 0.15rem;
-  background: rgba(86, 146, 62, 0.953);
+  background: rgba(41, 143, 30, 0.953);
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   border-radius: 10%;
+
 }
 
 #cells {
@@ -30,8 +35,8 @@ body {
   background-color: black;
   border: 1.2em solid black;
   border-radius: 2%;
-  box-shadow: 0.5em 0.5em 0.5em rgb(63, 63, 63),
-    -0.5em -0.3em 0.5em rgb(63, 63, 63)
+  /* box-shadow: 0.5em 0.5em 0.5em rgb(63, 63, 63), */
+  /* -0.5em -0.3em 0.5em rgb(0, 0, 0) */
 }
 
 .col {
@@ -43,14 +48,15 @@ body {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  border: 0.3rem solid rgb(60, 255, 0);
+  border: 0.3rem solid rgb(85, 255, 0);
 }
 
 .block {
   width: 2.5rem;
   height: 2.5rem;
   display: block;
-  margin-left:0.4rem ;
+  margin-left: 0.4rem;
+
 
 }
 
@@ -67,7 +73,7 @@ button :hover {
   box-shadow: 0.2em 0.2em 0.5em rgb(63, 63, 63);
 }
 
-.items{
+.items {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -80,57 +86,70 @@ button :hover {
   border-bottom-left-radius: 2rem;
   border-bottom-right-radius: 2rem
 }
-.logo img{
+
+.logo img {
   margin: 0.1em 1.5rem;
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
   border: 0.5rem solid rgb(155, 109, 49);
 }
-h1{
+
+h1 {
   display: inline;
   position: relative;
   bottom: 0.7em;
   font-size: 1.8em;
 }
-.navbar{
+
+.navbar {
   display: flex;
   align-items: center;
 }
-.navbar ul{
+
+.navbar ul {
   margin-right: 1rem;
   display: flex;
   list-style-type: none;
   font-size: 1.4rem;
 }
-.navbar li :hover{
+
+.navbar li :hover {
   color: rgb(153, 110, 54);
 }
+
 .navbar a {
   margin: 0 1.3em;
   color: #000;
   text-decoration: none;
 }
 
-.player-property{
+.player-property {
   position: relative;
-  width: 22em;
-  height: 25em;
+  width: 5em;
+  height: 10em;
+  text-align: center;
 }
-.one{
+
+.white {
   position: absolute;
   top: 10em;
-  display: inline-flex;
-  justify-content: flex-start;
-}
-.tow{
-  position: absolute;
-  top: 15.2em;
-  left: 73em;
+  left: 7em;
   display: inline-flex;
   justify-content: flex-end;
+  flex-direction: column;
 }
-#p{
+
+.black {
+  position: absolute;
+  top: 10em;
+  left: 60em;
+  display: inline-flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+#p {
   width: 100%;
   position: relative;
 }
