@@ -46,10 +46,10 @@ export default function Gamereact() {
   accCells[4][3] = 2;
   accCells[4][4] = 1;
 
+
   function findValidMove(i, j, turn, search) {
     let blockValidMoves = [];
     let validRow = i, validColumn = j;
-
 
 
     // check right 
@@ -183,7 +183,6 @@ export default function Gamereact() {
 
   function setBlock() {
 
-
     for (let i = 0; i < 8; i++) {
       for (let j = 0; j < 8; j++) {
 
@@ -215,6 +214,7 @@ export default function Gamereact() {
       }
     }
   }
+
   function choose(bturn, id, valPlaces) {
 
     let chossedBlock = [parseInt(id[1]), parseInt(id[2])];
@@ -303,24 +303,25 @@ export default function Gamereact() {
     }
     return true;
   }
+
+
+
   for (let i of allBlock) {
     for (let j of i) {
       j.addEventListener("click", (e) => {
+
         choose(blackTurn, e.target.id, valplace);
         blackTurn = !blackTurn;
         valplace = validPlaces(blackTurn);
         setSugustions(valplace);
         let scores = scoreUpdate();
-
         setBlackScore(scores[1]);
         setWhiteScore(scores[0]);
-
         if (isFinished()) {
-
           if (scores[0] > scores[1]) {
             window.alert(" white win  finish");
           }
-          if ( scores[0] < scores[1]) {
+          if (scores[0] < scores[1]) {
             window.alert(" black win  finish");
           }
         }
@@ -339,28 +340,23 @@ export default function Gamereact() {
     return [w, b];
   }
 
-
   let blackTurn = false;
   let valplace = validPlaces(blackTurn);
   setBlock();
   setSugustions(valplace);
 
   return (
-
     <><nav className="navbar">
       <div className="items">
-
         <div href="#" className="logo">
           <img src={img} alt="website logo" />
           <h1>Reversi Game</h1>
-
         </div>
         <ul>
           <li><a href="#">GAMES</a></li>
           <li><a href="#" target="_blank">SIGN IN</a></li>
           <li><a href="#">SIGN UP</a></li>
         </ul>
-
       </div>
     </nav><main>
         <div className='white player-property'>
@@ -379,17 +375,13 @@ export default function Gamereact() {
             <div className="col" id="row8"></div>
           </section>
           <section id="buttons">
-            <button><i className="fa-solid fa-arrow-rotate-right"></i>  RESTART</button>
+            <button id="btn" onClick={()=>{location.reload()}}>RESTART</button>
           </section>
         </article>
         <div className='black player-property'>
           <p>black</p>
           <p>score : {blackScore}</p>
         </div>
-
-
-
       </main></>
-
   )
 }

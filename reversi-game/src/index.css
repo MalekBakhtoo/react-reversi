@@ -26,7 +26,7 @@ body {
 #cells {
   position: absolute;
   left: 23.5em;
-  top: 2.2em;
+  top: 1em;
   width: fit-content;
   display: flex;
   justify-content: center;
@@ -62,11 +62,12 @@ body {
 
 button {
   position: relative;
-  top: 50em;
-  left: 56em;
+  top: 35em;
+  left: 73em;
   padding: 1em;
   border: none;
   cursor: pointer;
+  background-color: rgb(52, 103, 31, 0.863);
 }
 
 button :hover {
